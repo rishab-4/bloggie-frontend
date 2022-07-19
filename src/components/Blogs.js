@@ -7,7 +7,7 @@ const Blogs = () => {
   const [blogs, setBlogs] = useState();
   const sendRequest = async () => {
     const res = await axios
-      .get("http://localhost:5000/api/blog")
+      .get("https://our-bloggie.herokuapp.com/api/blog")
       .catch((err) => console.log(err));
     const data = await res.data;
     return data;
@@ -17,11 +17,13 @@ const Blogs = () => {
   }, []);
   console.log(blogs);
   return (
-    <Box sx={{paddingInline:"32px"}} >
-      <Grid container direction="row" justifyContent={"space-between"}>
+    <Box sx={{paddingInline:"32px", width:"60%", margin:"auto"}} >
+      <br/>
+      <br/>
+      <Grid container direction="column" justifyContent={"center"}>
       {blogs &&
         blogs.map((blog, index) => (
-          <Grid item xs={3}>
+          <Grid item>
             <Blog
             id={blog._id}
             isUser={localStorage.getItem("userId") === blog.user._id}
